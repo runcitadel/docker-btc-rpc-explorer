@@ -1,14 +1,14 @@
-ARG VERSION=v3.1.1
+ARG VERSION=v3.2.0
 
-FROM node:12-buster-slim AS builder
+FROM node:16-bullseye-slim AS builder
 
 ARG VERSION
 
 WORKDIR /build
 
-RUN apt-get update
+RUN apt update
 
-RUN apt-get install -y git python3 build-essential
+RUN apt install -y git python3 build-essential
 
 RUN git clone --branch $VERSION https://github.com/janoside/btc-rpc-explorer .
 
@@ -20,7 +20,7 @@ RUN npm ci --production
 
 RUN rm -rf .git
 
-FROM node:12-buster-slim
+FROM node:16-bullseye-slim
 
 USER 1000
 
