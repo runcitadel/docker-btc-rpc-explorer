@@ -1,4 +1,4 @@
-ARG VERSION=v3.2.0
+ARG VERSION=master
 
 FROM node:16-bullseye-slim AS builder
 
