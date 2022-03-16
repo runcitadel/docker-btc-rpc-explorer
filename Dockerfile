@@ -20,7 +20,7 @@ RUN npm ci --production
 
 RUN rm -rf .git
 
-FROM node:16-bullseye-slim
+FROM gcr.io/distroless/nodejs:16
 
 USER 1000
 
@@ -30,4 +30,4 @@ COPY --from=builder /build .
 
 EXPOSE 3002
 
-CMD [ "npm", "start" ]
+CMD [ "./bin/www" ]
