@@ -1,6 +1,6 @@
 ARG VERSION=master
 
-FROM node:16-bullseye-slim AS builder
+FROM node:18-bullseye-slim AS builder
 
 ARG VERSION
 
@@ -20,7 +20,7 @@ RUN npm ci --production
 
 RUN rm -rf .git
 
-FROM gcr.io/distroless/nodejs:16
+FROM node:18-bullseye-slim
 
 USER 1000
 
@@ -30,4 +30,4 @@ COPY --from=builder /build .
 
 EXPOSE 3002
 
-CMD [ "./bin/www" ]
+CMD [ "npm", "start" ]
